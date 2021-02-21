@@ -23,7 +23,7 @@ export class ToDoTrackerApp {
 
     /**
      * launch
-     * 
+     *
      * @param {*} testFile The JSON file containing initial todo lists of data.
      */
     launch(testFile) {
