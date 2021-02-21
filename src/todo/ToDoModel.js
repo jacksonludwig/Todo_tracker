@@ -192,4 +192,12 @@ export default class ToDoModel {
       }
     }
   }
+
+  confirmListDeletion() {
+    let delBtn = document.getElementById("delete-list-button");
+    let popup = document.getElementById("deleteListPopup");
+    delBtn.onclick = function () {
+      popup.style.display = "block";
+    }
+  }
 }
