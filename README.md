@@ -1,6 +1,6 @@
-* TODO
+# TODO
 
-** Edit task text
+## Edit task text
 Add event to controller to handle clicking task. 
 
 Make it pop-up a window to allow editing text.
