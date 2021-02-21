@@ -31,21 +31,10 @@ export default class ToDoController {
     }
   }
 
-  // This works by simply swapping the chosen list and the top list.
-  moveListToTop(selectedlistId) {
-    let toDoLists = this.model.toDoLists;
-    for (let i = 0; i < toDoLists.length; i++) {
-      if (toDoLists[i].id == selectedlistId) {
-        // TODO
-      }
-    }
-  }
-
   // PROVIDES THE RESPONSE TO WHEN A USER CLICKS ON A LIST TO LOAD
-  // ** This will be where we need to bring our currently selected list to the top
   handleLoadList(listId) {
     // UNLOAD THE CURRENT LIST AND INSTEAD LOAD THE CURRENT LIST
     this.model.loadList(listId);
-    this.moveListToTop(listId);
+    this.model.moveListToTop(listId); // move chosen to top of list of lists
   }
 }

@@ -177,4 +177,19 @@ export default class ToDoModel {
       this.tps.undoTransaction();
     }
   }
+
+  // This works by simply swapping the chosen list and the top list.
+  // Added by me.
+  moveListToTop(selectedlistId) {
+    let toDoLists = this.toDoLists;
+    for (let i = 0; i < toDoLists.length; i++) {
+      if (toDoLists[i].id == selectedlistId) {
+        let temp = toDoLists[i];
+        toDoLists[i] = toDoLists[0];
+        toDoLists[0] = temp;
+        this.view.refreshLists(toDoLists);
+        break;
+      }
+    }
+  }
 }
