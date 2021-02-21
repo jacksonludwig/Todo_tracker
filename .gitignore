@@ -1,1 +1,5 @@
 jsconfig.json
+.log/
+.log
+*.log
+src/todo/log/
