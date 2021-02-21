@@ -184,9 +184,9 @@ export default class ToDoModel {
     let toDoLists = this.toDoLists;
     for (let i = 0; i < toDoLists.length; i++) {
       if (toDoLists[i].id == selectedlistId) {
-        let temp = toDoLists[i];
-        toDoLists[i] = toDoLists[0];
-        toDoLists[0] = temp;
+        let removed = toDoLists[i];
+        toDoLists.splice(i, 1); // remove selected and shift
+        toDoLists.splice(0, 0, removed); // add it to top and shift
         this.view.refreshLists(toDoLists);
         break;
       }
