@@ -81,7 +81,6 @@
   overflow: auto;
   background-color: rgba(0,0,0,0.4);
 }
-
 .popup-data {
   background-color: #fefefe;
   margin: 30% auto;
@@ -89,28 +88,13 @@
   border: 1px solid #888;
   width: 80%;
 }
-
-.close {
-  color: #aaa;
- /* float: right; */
-  font-size: 28px;
-  font-weight: bold;
-}
-
-.close:hover {
+#confirmDeleteSpan:hover,
+#confirmDeleteSpan:focus,
+#cancelDeleteSpan:hover,
+#cancelDeleteSpan:focus {
   color: black;
   text-decoration: none;
   cursor: pointer;
-}
-
-.close:focus {
-  color: black;
-  text-decoration: none;
-  cursor: pointer;
-}
-
-#confirmDeleteSpan {
-  
 }
 #cancelDeleteSpan {
   padding-left: 30px;

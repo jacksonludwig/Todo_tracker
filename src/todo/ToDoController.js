@@ -23,12 +23,21 @@ export default class ToDoController {
     document.getElementById("redo-button").onmousedown = function() {
       appModel.redo();
     }
-    document.getElementById("delete-list-button").onmousedown = function() {
-      //appModel.removeCurrentList();
-      appModel.confirmListDeletion();
-    }
     document.getElementById("add-item-button").onmousedown = function() {
       appModel.addNewItemTransaction();
+    }
+    // document.getElementById("delete-list-button") = function () {
+    //   appModel.removeCurrentList();
+    // }
+    document.getElementById("delete-list-button").onmousedown = function() {
+      appModel.showListDeleteConfirm();
+    }
+    document.getElementById("confirmDeleteSpan").onmousedown = function () {
+      appModel.removeCurrentList();
+      appModel.hideListDeleteConfirm();
+    }
+    document.getElementById("cancelDeleteSpan").onmousedown = function () {
+      appModel.hideListDeleteConfirm();
     }
   }
 

@@ -193,11 +193,15 @@ export default class ToDoModel {
     }
   }
 
-  confirmListDeletion() {
-    let delBtn = document.getElementById("delete-list-button");
+  // These maybe should be moved to controller/view.
+  // Helper functions that hide/show the list delete confirmation box.
+  // Added by me.
+  showListDeleteConfirm() {
     let popup = document.getElementById("deleteListPopup");
-    delBtn.onclick = function () {
-      popup.style.display = "block";
-    }
+    popup.style.display = "block";
+  }
+  hideListDeleteConfirm() {
+    let popup = document.getElementById("deleteListPopup");
+    popup.style.display = "none";
   }
 }
