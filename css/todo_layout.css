@@ -83,10 +83,10 @@
 }
 .popup-data {
   background-color: #fefefe;
-  margin: 30% auto;
+  margin: 10% auto;
   padding: 15px;
   border: 1px solid #888;
-  width: 80%;
+  width: 30%;
 }
 #confirmDeleteSpan:hover,
 #confirmDeleteSpan:focus,
