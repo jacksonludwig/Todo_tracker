@@ -46,16 +46,15 @@ export default class ToDoController {
 			for (let index = 0; index < items.length; index++) {
 				const item = items[index];
 				if (item.onblur === null) {
-					item.onblur = function () {
-						appModel.addEditTaskTextTransaction();
-						console.log(item);
+
+					item.onblur = function (event) {
+						appModel.editTaskTextTransaction(event);
 					}
 				}
 			}
 		});
 
 	}
-
 
 	// PROVIDES THE RESPONSE TO WHEN A USER CLICKS ON A LIST TO LOAD
 	handleLoadList(listId) {

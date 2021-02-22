@@ -206,9 +206,10 @@ export default class ToDoModel {
     popup.style.display = "none";
   }
 
-	// Added by me
-	addEditTaskTextTransaction() {
-		let transaction = new EditTextTask_Transaction(this);
-		this.tps.addTransaction(transaction);
-	}
+
+//   editTaskTextTransaction(event) {
+//     let transaction = new EditTextTask_Transaction(this, event);
+//     this.tps.addTransaction(transaction);
+//   }
+
 }
