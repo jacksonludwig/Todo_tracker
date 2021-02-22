@@ -48,7 +48,7 @@ export default class ToDoController {
 				if (item.onblur === null) {
 
 					item.onblur = function (event) {
-						appModel.editTaskTextTransaction(event);
+						// appModel.editTaskTextTransaction(event);
 					}
 				}
 			}
