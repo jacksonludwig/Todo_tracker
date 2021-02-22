@@ -69,3 +69,10 @@
 .todo_button:hover {
     background-color: var(--swatch-contrast);
 }
+
+.task-col {
+    background: none;
+    border: none;
+    font-family: var(--font-primary);
+    color: var(--swatch-text);
+}
