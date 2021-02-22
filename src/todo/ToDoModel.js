@@ -4,6 +4,7 @@ import ToDoList from './ToDoList.js'
 import ToDoListItem from './ToDoListItem.js'
 import jsTPS from '../common/jsTPS.js'
 import AddNewItem_Transaction from './transactions/AddNewItem_Transaction.js'
+import EditTextTask_Transaction from './transactions/EditTextTask_Transaction.js'
 
 /**
  * ToDoModel
@@ -204,4 +205,10 @@ export default class ToDoModel {
     let popup = document.getElementById("deleteListPopup");
     popup.style.display = "none";
   }
+
+	// Added by me
+	addEditTaskTextTransaction() {
+		let transaction = new EditTextTask_Transaction(this);
+		this.tps.addTransaction(transaction);
+	}
 }
