@@ -4,19 +4,19 @@
 import { jsTPS_Transaction } from "../../common/jsTPS.js"
 
 export default class EditDateText_Transaction extends jsTPS_Transaction {
-	constructor(initModel, oldDate, newDate, id) {
+	constructor(initModel, oldDate, newDate, item) {
 		super();
 		this.model = initModel;
 		this.oldDate = oldDate;
 		this.newDate = newDate;
-		this.id = id;
+		this.item = item;
 	}
 
 	doTransaction() {
-		this.model.updateDateById(this.id, this.newDate);
+		this.model.updateDate(this.item, this.newDate);
 	}
 
 	undoTransaction() {
-		this.model.updateDateById(this.id, this.oldDate);
+		this.model.updateDate(this.item, this.oldDate);
 	}
 }

@@ -224,40 +224,27 @@ export default class ToDoModel {
 	/**
 	 * Update task text for item using its id.
 	 */
-	updateTextById(id, newText) {
-		for (let index = 0; index < this.currentList.items.length; index++) {
-			const item = this.currentList.items[index];
-			if (id === item.id) {
-				item.description = newText;
-				this.view.viewList(this.currentList); // reload the list view
-				break;
-			}
-		}
+	updateText(item, newText) {
+		item.description = newText;
+		this.view.viewList(this.currentList); // reload the list view
 	}
 
 	/**
 	 * Update date text for item using its id.
 	 */
-	updateDateById(id, newDate) {
-		for (let index = 0; index < this.currentList.items.length; index++) {
-			const item = this.currentList.items[index];
-			if (id === item.id) {
-				item.dueDate = newDate;
-				this.view.viewList(this.currentList); // reload the list view
-				break;
-			}
-		}
+	updateDate(item, newDate) {
+		item.dueDate = newDate;
+		this.view.viewList(this.currentList); // reload the list view
 	}
 
-  editTaskTextTransaction(oldText, newText, id) {
-    let transaction = new EditTextTask_Transaction(this, oldText, newText, id);
+  editTaskTextTransaction(oldText, newText, item) {
+    let transaction = new EditTextTask_Transaction(this, oldText, newText, item);
     this.tps.addTransaction(transaction);
   }
 
-  editDateTextTransaction(oldDate, newDate, id) {
-    let transaction = new EditDateText_Transaction(this, oldDate, newDate, id);
+  editDateTextTransaction(oldDate, newDate, item) {
+    let transaction = new EditDateText_Transaction(this, oldDate, newDate, item);
     this.tps.addTransaction(transaction);
   }
-
 
 }

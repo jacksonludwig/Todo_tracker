@@ -42,6 +42,7 @@ export default class ToDoController {
 		}
 
 		// Handle task edits
+		// TODO make faster
 		document.getElementById("todo-list-items-div").addEventListener('DOMNodeInserted', function () {
 			let items = document.getElementsByClassName("task-col");
 			for (let index = 0; index < items.length; index++) {
@@ -49,12 +50,13 @@ export default class ToDoController {
 				if (item.onblur === null) {
 					item.onblur = function(event) {
 						let id = Number(item.parentNode.id.replace(/\D/g, "")); // get id of clicked item
-						let oldText = appModel.getItemById(id).description; // old val currently in model
+						let listItem = appModel.getItemById(id);
+						let oldText = listItem.description; // old val currently in model
 						let newText = event.target.value; // new value entered into field
 						if (newText === "") {
 							event.target.value = oldText;
 						} else if (oldText !== newText) {
-							appModel.editTaskTextTransaction(oldText, newText, id);
+							appModel.editTaskTextTransaction(oldText, newText, listItem);
 						}
 					}
 				}
@@ -62,6 +64,7 @@ export default class ToDoController {
 		});
 
 		// Handle date edits
+		// TODO make faster
 		document.getElementById("todo-list-items-div").addEventListener('DOMNodeInserted', function () {
 			let items = document.getElementsByClassName("due-date-col");
 			for (let index = 0; index < items.length; index++) {
@@ -69,9 +72,10 @@ export default class ToDoController {
 				if (item.onchange === null) {
 					item.onchange = function(event) {
 						let id = Number(item.parentNode.id.replace(/\D/g, "")); // get id of clicked item
-						let oldDate = appModel.getItemById(id).dueDate;
+						let listItem = appModel.getItemById(id);
+						let oldDate = listItem.dueDate;
 						let newDate = event.target.value;
-						appModel.editDateTextTransaction(oldDate, newDate, id);
+						appModel.editDateTextTransaction(oldDate, newDate, listItem);
 					}
 				}
 			}
