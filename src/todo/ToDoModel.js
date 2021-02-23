@@ -206,10 +206,24 @@ export default class ToDoModel {
     popup.style.display = "none";
   }
 
+	/**
+	 * Returns list item object that matches a given list item id.
+	 * Null otherwise.
+	 */
+	getItemById(id) {
+		for (let index = 0; index < this.currentList.length; index++) {
+			const item = this.currentList[index];
+			if (id === item.id) {
+				return item;
+			}
+		}
+		return null;
+	}
 
-//   editTaskTextTransaction(event) {
-//     let transaction = new EditTextTask_Transaction(this, event);
-//     this.tps.addTransaction(transaction);
-//   }
+
+  editTaskTextTransaction() {
+    let transaction = new EditTextTask_Transaction(this);
+    this.tps.addTransaction(transaction);
+  }
 
 }
