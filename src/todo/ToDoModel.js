@@ -56,7 +56,7 @@ export default class ToDoModel {
    * 
    * Function for adding a new item to the list argument using the provided data arguments.
    */
-  addNewItemToList(list, initDescription, initDueDate, initStatus) {
+  addItemToList(list, initDescription, initDueDate, initStatus) {
     let newItem = new ToDoListItem(this.nextListItemId++);
     newItem.setDescription(initDescription);
     newItem.setDueDate(initDueDate);

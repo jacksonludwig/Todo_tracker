@@ -38,7 +38,7 @@ export class ToDoTrackerApp {
                     let listToAdd = modelToUpdate.addNewList(json.lists[i].name);
                     for (let j = 0; j < json.lists[i].items.length; j++) {
                         let itemData = json.lists[i].items[j];
-                        modelToUpdate.addNewItemToList(listToAdd, itemData.description, itemData.due_date, itemData.status);
+                        modelToUpdate.addItemToList(listToAdd, itemData.description, itemData.due_date, itemData.status);
                     }
                 }
             }
