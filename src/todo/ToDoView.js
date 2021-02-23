@@ -73,16 +73,6 @@ export default class ToDoView {
 				+ " <div class='list-item-control'></div>"
 				+ "</div>";
 			itemsListDiv.innerHTML += listItemElement;
-
-			// below added by me
-			// let controller = this.controller;
-			// let taskTextBox = document.getElementById("todo-list-item-" + listItem.id).childNodes[0];
-			// taskTextBox.onblur = function(event) {
-			// 	let oldText = listItem.description;
-			// 	let newText = event.target.value;
-			// 	let id = listItem.id;
-			// 	controller.handleTextChange(oldText, newText, id);
-			// }
 		 }
 	}
 
