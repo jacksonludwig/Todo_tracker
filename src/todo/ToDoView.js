@@ -50,6 +50,40 @@ export default class ToDoView {
 		}
 	}
 
+	generateListElementIncomplete(listItem) {
+			return "<div id='todo-list-item-" + listItem.id + "' class='list-item-card'>"
+				+ "<input type='text' class='task-col' value='" + listItem.description + "'/>"
+				+ "<input type='date' class='due-date-col' value='" + listItem.dueDate + "'/>"
+				+ "<select name='status' class='status-col'>" 
+				+ "<option value='incomplete' selected>" + listItem.status + "</option>"
+				+ "<option value='complete'>complete</option>"
+				+ "</select>"
+				+ "<div class='list-controls-col'>"
+				+ " <div class='list-item-control material-icons'>keyboard_arrow_up</div>"
+				+ " <div class='list-item-control material-icons'>keyboard_arrow_down</div>"
+				+ " <div class='list-item-control material-icons'>close</div>"
+				+ " <div class='list-item-control'></div>"
+				+ " <div class='list-item-control'></div>"
+				+ "</div>";
+	}
+
+	generateListElementComplete(listItem) {
+			return "<div id='todo-list-item-" + listItem.id + "' class='list-item-card'>"
+				+ "<input type='text' class='task-col' value='" + listItem.description + "'/>"
+				+ "<input type='date' class='due-date-col' value='" + listItem.dueDate + "'/>"
+				+ "<select name='status' class='status-col'>" 
+				+ "<option value='complete' selected>" + listItem.status + "</option>"
+				+ "<option value='incomplete'>incomplete</option>"
+				+ "</select>"
+				+ "<div class='list-controls-col'>"
+				+ " <div class='list-item-control material-icons'>keyboard_arrow_up</div>"
+				+ " <div class='list-item-control material-icons'>keyboard_arrow_down</div>"
+				+ " <div class='list-item-control material-icons'>close</div>"
+				+ " <div class='list-item-control'></div>"
+				+ " <div class='list-item-control'></div>"
+				+ "</div>";
+	}
+
 	// LOADS THE list ARGUMENT'S ITEMS INTO THE VIEW
 	viewList(list) {
 		// WE'LL BE ADDING THE LIST ITEMS TO OUR WORKSPACE
@@ -61,17 +95,12 @@ export default class ToDoView {
 		for (let i = 0; i < list.items.length; i++) {
 			// NOW BUILD ALL THE LIST ITEMS
 			let listItem = list.items[i];
-			let listItemElement = "<div id='todo-list-item-" + listItem.id + "' class='list-item-card'>"
-				+ "<input type='text' class='task-col' value='" + listItem.description + "'/>"
-				+ "<input type='date' class='due-date-col' value='" + listItem.dueDate + "'/>"
-				+ "<div class='status-col'>" + listItem.status + "</div>"
-				+ "<div class='list-controls-col'>"
-				+ " <div class='list-item-control material-icons'>keyboard_arrow_up</div>"
-				+ " <div class='list-item-control material-icons'>keyboard_arrow_down</div>"
-				+ " <div class='list-item-control material-icons'>close</div>"
-				+ " <div class='list-item-control'></div>"
-				+ " <div class='list-item-control'></div>"
-				+ "</div>";
+			let listItemElement = "";
+			if (listItem.status === "complete") {
+				listItemElement = this.generateListElementComplete(listItem);
+			} else {
+				listItemElement = this.generateListElementIncomplete(listItem);
+			}
 			itemsListDiv.innerHTML += listItemElement;
 		 }
 	}
