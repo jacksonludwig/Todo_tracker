@@ -228,7 +228,7 @@ export default class ToDoModel {
 			const item = this.currentList.items[index];
 			if (id === item.id) {
 				item.description = newText;
-				this.view.viewList(this.currentList); // a "refreshList" function may be better.
+				this.view.viewList(this.currentList); // reload the list view
 				break;
 			}
 		}

@@ -50,9 +50,8 @@ export default class ToDoController {
 						let id = Number(item.parentNode.id.replace(/\D/g, ""));
 						let oldText = appModel.getItemById(id).description; // old val currently in model
 						let newText = event.target.value; // new value entered into field
-						console.log("old: " + oldText);
-						console.log("new: " + newText);
-						appModel.editTaskTextTransaction(oldText, newText, id);
+						// if (newText !== "")
+							appModel.editTaskTextTransaction(oldText, newText, id);
 					}
 				}
 			}
