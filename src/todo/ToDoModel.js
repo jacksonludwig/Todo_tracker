@@ -5,6 +5,7 @@ import ToDoListItem from './ToDoListItem.js'
 import jsTPS from '../common/jsTPS.js'
 import AddNewItem_Transaction from './transactions/AddNewItem_Transaction.js'
 import EditTextTask_Transaction from './transactions/EditTextTask_Transaction.js'
+import EditDateText_Transaction from './transactions/EditDateText_Transaction.js'
 
 /**
  * ToDoModel
@@ -221,7 +222,7 @@ export default class ToDoModel {
 	}
 
 	/**
-	 * Update text for item using its id.
+	 * Update task text for item using its id.
 	 */
 	updateTextById(id, newText) {
 		for (let index = 0; index < this.currentList.items.length; index++) {
@@ -234,9 +235,29 @@ export default class ToDoModel {
 		}
 	}
 
+	/**
+	 * Update date text for item using its id.
+	 */
+	updateDateById(id, newDate) {
+		for (let index = 0; index < this.currentList.items.length; index++) {
+			const item = this.currentList.items[index];
+			if (id === item.id) {
+				item.dueDate = newDate;
+				this.view.viewList(this.currentList); // reload the list view
+				break;
+			}
+		}
+	}
+
   editTaskTextTransaction(oldText, newText, id) {
     let transaction = new EditTextTask_Transaction(this, oldText, newText, id);
     this.tps.addTransaction(transaction);
   }
+
+  editDateTextTransaction(oldDate, newDate, id) {
+    let transaction = new EditDateText_Transaction(this, oldDate, newDate, id);
+    this.tps.addTransaction(transaction);
+  }
+
 
 }

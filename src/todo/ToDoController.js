@@ -41,13 +41,14 @@ export default class ToDoController {
 			appModel.hideListDeleteConfirm();
 		}
 
+		// Handle task edits
 		document.getElementById("todo-list-items-div").addEventListener('DOMNodeInserted', function () {
 			let items = document.getElementsByClassName("task-col");
 			for (let index = 0; index < items.length; index++) {
 				const item = items[index];
 				if (item.onblur === null) {
 					item.onblur = function(event) {
-						let id = Number(item.parentNode.id.replace(/\D/g, ""));
+						let id = Number(item.parentNode.id.replace(/\D/g, "")); // get id of clicked item
 						let oldText = appModel.getItemById(id).description; // old val currently in model
 						let newText = event.target.value; // new value entered into field
 						if (newText === "") {
@@ -60,6 +61,21 @@ export default class ToDoController {
 			}
 		});
 
+		// Handle date edits
+		document.getElementById("todo-list-items-div").addEventListener('DOMNodeInserted', function () {
+			let items = document.getElementsByClassName("due-date-col");
+			for (let index = 0; index < items.length; index++) {
+				const item = items[index];
+				if (item.onchange === null) {
+					item.onchange = function(event) {
+						let id = Number(item.parentNode.id.replace(/\D/g, "")); // get id of clicked item
+						let oldDate = appModel.getItemById(id).dueDate;
+						let newDate = event.target.value;
+						appModel.editDateTextTransaction(oldDate, newDate, id);
+					}
+				}
+			}
+		});
 	}
 
 	// PROVIDES THE RESPONSE TO WHEN A USER CLICKS ON A LIST TO LOAD
