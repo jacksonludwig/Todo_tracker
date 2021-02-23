@@ -4,21 +4,19 @@
 import { jsTPS_Transaction } from "../../common/jsTPS.js"
 
 export default class EditTextTask_Transaction extends jsTPS_Transaction {
-    constructor(initModel) {
-        super();
-        this.model = initModel;
-    }
+	constructor(initModel, oldText, newText, id) {
+		super();
+		this.model = initModel;
+		this.oldText = oldText;
+		this.newText = newText;
+		this.id = id;
+	}
 
-    doTransaction() {
-			// TODO
-    }
+	doTransaction() {
+		this.model.updateTextById(this.id, this.newText);
+	}
 
-    undoTransaction() {
-			// TODO
-    }
-
-		// getIdForCurrentNode() {
-		// 	let parent = this.textField.target.parentNode.id;
-		// 	return parent.replace(/\D/g, ""); // regex to extract just id
-		// }
+	undoTransaction() {
+		this.model.updateTextById(this.id, this.oldText);
+	}
 }

@@ -46,8 +46,13 @@ export default class ToDoController {
 			for (let index = 0; index < items.length; index++) {
 				const item = items[index];
 				if (item.onblur === null) {
-					item.onblur = function (event) {
-						appModel.editTaskTextTransaction();
+					item.onblur = function(event) {
+						let id = Number(item.parentNode.id.replace(/\D/g, ""));
+						let oldText = appModel.getItemById(id).description; // old val currently in model
+						let newText = event.target.value; // new value entered into field
+						console.log("old: " + oldText);
+						console.log("new: " + newText);
+						appModel.editTaskTextTransaction(oldText, newText, id);
 					}
 				}
 			}

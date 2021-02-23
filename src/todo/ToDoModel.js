@@ -211,8 +211,8 @@ export default class ToDoModel {
 	 * Null otherwise.
 	 */
 	getItemById(id) {
-		for (let index = 0; index < this.currentList.length; index++) {
-			const item = this.currentList[index];
+		for (let index = 0; index < this.currentList.items.length; index++) {
+			const item = this.currentList.items[index];
 			if (id === item.id) {
 				return item;
 			}
@@ -220,9 +220,21 @@ export default class ToDoModel {
 		return null;
 	}
 
+	/**
+	 * Update text for item using its id.
+	 */
+	updateTextById(id, newText) {
+		for (let index = 0; index < this.currentList.items.length; index++) {
+			const item = this.currentList.items[index];
+			if (id === item.id) {
+				item.description = newText;
+				break;
+			}
+		}
+	}
 
-  editTaskTextTransaction() {
-    let transaction = new EditTextTask_Transaction(this);
+  editTaskTextTransaction(oldText, newText, id) {
+    let transaction = new EditTextTask_Transaction(this, oldText, newText, id);
     this.tps.addTransaction(transaction);
   }
 
