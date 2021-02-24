@@ -7,6 +7,7 @@ import AddNewItem_Transaction from './transactions/AddNewItem_Transaction.js'
 import EditTextTask_Transaction from './transactions/EditTextTask_Transaction.js'
 import EditDateText_Transaction from './transactions/EditDateText_Transaction.js'
 import EditStatusText_Transaction from './transactions/EditStatusText_Transaction.js'
+import MoveItemUp_Transaction from './transactions/MoveItemUp_Transaction.js'
 
 /**
  * ToDoModel
@@ -246,6 +247,31 @@ export default class ToDoModel {
 		this.view.viewList(this.currentList); // reload the list view
 	}
 
+  /**
+  * Move list item up using item id.
+  */
+  moveItemUp(id) {
+    let toDoLists = this.toDoLists;
+    for (let i = 0; i < toDoLists.length; i++) {
+      for (let j = 0; j < toDoLists[i].length; j++) {
+        if (toDoLists[i][j].id === id) {
+          // TODO account for being top list
+          let removed = toDoLists[i].splice(j, 1);
+          toDoLists[i].splice(j - 1, 0, removed);
+          this.view.refreshLists(toDoLists);
+          break;
+        }
+      }
+    }
+  }
+
+  /**
+  * Move list item down using item id.
+  */
+  moveItemDown(id) {
+
+  }
+
   editTaskTextTransaction(oldText, newText, item) {
     let transaction = new EditTextTask_Transaction(this, oldText, newText, item);
     this.tps.addTransaction(transaction);
@@ -261,5 +287,9 @@ export default class ToDoModel {
     this.tps.addTransaction(transaction);
   }
 
+  moveItemUpTransaction(id) {
+    let transaction = new MoveItemUp_Transaction(this, id);
+    this.tps.addTransaction(transaction);
+  }
 
 }

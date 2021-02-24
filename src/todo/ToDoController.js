@@ -41,6 +41,27 @@ export default class ToDoController {
 			appModel.hideListDeleteConfirm();
 		}
 
+		// Handle move up/down/delete
+		document.getElementById("todo-list-items-div").addEventListener('DOMNodeInserted', function () {
+			let items = document.getElementsByClassName("list-item-control material-icons");
+			// skip first three because they're the list control buttons
+			for (let i = 3; i < items.length; i++) {
+				if (items[i].onclick === null) {
+					items[i].onclick = function () {
+						let id = Number(items[i].parentNode.parentNode.id.replace(/\D/g, "")); // get id of clicked item
+						if (items[i].innerHTML === "keyboard_arrow_up") {
+							console.log("up clicked");
+							appModel.moveItemUpTransaction(id);
+						} else if (items[i].innerHTML === "keyboard_arrow_down") {
+							console.log("down clicked");
+						} else {
+							console.log("delete clicked");
+						}
+					}
+				}
+			}
+		});
+
 		// Handle task edits
 		document.getElementById("todo-list-items-div").addEventListener('DOMNodeInserted', function () {
 			let items = document.getElementsByClassName("task-col");
