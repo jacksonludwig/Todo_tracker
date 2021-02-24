@@ -54,6 +54,7 @@ export default class ToDoController {
 							appModel.moveItemUpTransaction(id);
 						} else if (items[i].innerHTML === "keyboard_arrow_down") {
 							console.log("down clicked");
+							appModel.moveItemDownTransaction(id);
 						} else {
 							console.log("delete clicked");
 						}

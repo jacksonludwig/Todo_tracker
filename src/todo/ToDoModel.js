@@ -8,6 +8,7 @@ import EditTextTask_Transaction from './transactions/EditTextTask_Transaction.js
 import EditDateText_Transaction from './transactions/EditDateText_Transaction.js'
 import EditStatusText_Transaction from './transactions/EditStatusText_Transaction.js'
 import MoveItemUp_Transaction from './transactions/MoveItemUp_Transaction.js'
+import MoveItemDown_Transaction from './transactions/MoveItemDown_Transaction.js'
 
 /**
  * ToDoModel
@@ -255,10 +256,8 @@ export default class ToDoModel {
     for (let i = 0; i < toDoLists.length; i++) {
       for (let j = 0; j < toDoLists[i].items.length; j++) {
         if (toDoLists[i].items[j].id === id) {
-					console.log("clicked");
           // TODO account for being top list
 					let removed = toDoLists[i].items[j];
-					console.log(removed);
           toDoLists[i].items.splice(j, 1);
           toDoLists[i].items.splice(j - 1, 0, removed);
           this.view.viewList(this.currentList);
@@ -272,7 +271,19 @@ export default class ToDoModel {
   * Move list item down using item id.
   */
   moveItemDown(id) {
-
+    let toDoLists = this.toDoLists;
+    for (let i = 0; i < toDoLists.length; i++) {
+      for (let j = 0; j < toDoLists[i].items.length; j++) {
+        if (toDoLists[i].items[j].id === id) {
+          // TODO account for being bottom list
+					let removed = toDoLists[i].items[j];
+          toDoLists[i].items.splice(j, 1);
+          toDoLists[i].items.splice(j + 1, 0, removed);
+          this.view.viewList(this.currentList);
+          break;
+        }
+      }
+    }
   }
 
   editTaskTextTransaction(oldText, newText, item) {
@@ -292,6 +303,10 @@ export default class ToDoModel {
 
   moveItemUpTransaction(id) {
     let transaction = new MoveItemUp_Transaction(this, id);
+    this.tps.addTransaction(transaction);
+  }
+  moveItemDownTransaction(id) {
+    let transaction = new MoveItemDown_Transaction(this, id);
     this.tps.addTransaction(transaction);
   }
 
