@@ -57,6 +57,8 @@ export default class ToDoController {
 							appModel.moveItemDownTransaction(id);
 						} else {
 							console.log("delete clicked");
+							let listItem = appModel.getItemById(id);
+							appModel.deleteItemTransaction(listItem);
 						}
 					}
 				}

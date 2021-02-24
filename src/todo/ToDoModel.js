@@ -9,6 +9,7 @@ import EditDateText_Transaction from './transactions/EditDateText_Transaction.js
 import EditStatusText_Transaction from './transactions/EditStatusText_Transaction.js'
 import MoveItemUp_Transaction from './transactions/MoveItemUp_Transaction.js'
 import MoveItemDown_Transaction from './transactions/MoveItemDown_Transaction.js'
+import DeleteItem_Transaction from './transactions/DeleteItem_Transaction.js'
 
 /**
  * ToDoModel
@@ -41,7 +42,8 @@ export default class ToDoModel {
    * @param {*} itemToAdd A instantiated item to add to the list.
    */
   addItemToCurrentList(itemToAdd) {
-    this.currentList.push(itemToAdd);
+    this.currentList.addItem(itemToAdd);
+		this.view.viewList(this.currentList);
   }
 
   /**
@@ -307,6 +309,10 @@ export default class ToDoModel {
   }
   moveItemDownTransaction(id) {
     let transaction = new MoveItemDown_Transaction(this, id);
+    this.tps.addTransaction(transaction);
+  }
+  deleteItemTransaction(item) {
+    let transaction = new DeleteItem_Transaction(this, item);
     this.tps.addTransaction(transaction);
   }
 
