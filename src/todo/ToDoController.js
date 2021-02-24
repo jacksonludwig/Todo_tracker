@@ -40,6 +40,9 @@ export default class ToDoController {
 		document.getElementById("cancelDeleteSpan").onmousedown = function () {
 			appModel.hideListDeleteConfirm();
 		}
+		document.getElementById("close-list-button").onmousedown = function () {
+			appModel.closeList();
+		}
 
 		// Handle move up/down/delete
 		document.getElementById("todo-list-items-div").addEventListener('DOMNodeInserted', function () {

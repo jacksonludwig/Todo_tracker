@@ -12,10 +12,10 @@ import MoveItemDown_Transaction from './transactions/MoveItemDown_Transaction.js
 import DeleteItem_Transaction from './transactions/DeleteItem_Transaction.js'
 
 /**
- * ToDoModel
- *
- * This class manages all the app data.
- */
+* ToDoModel
+*
+* This class manages all the app data.
+*/
 export default class ToDoModel {
 	constructor() {
 		// THIS WILL STORE ALL OF OUR LISTS
@@ -35,22 +35,22 @@ export default class ToDoModel {
 	}
 
 	/**
-	 * addItemToCurrentList
-	 *
-	 * This function adds the itemToAdd argument to the current list being edited.
-	 * 
-	 * @param {*} itemToAdd A instantiated item to add to the list.
-	 */
+	* addItemToCurrentList
+	*
+	* This function adds the itemToAdd argument to the current list being edited.
+	*
+	* @param {*} itemToAdd A instantiated item to add to the list.
+	*/
 	addItemToCurrentList(itemToAdd) {
 		this.currentList.addItem(itemToAdd);
 		this.view.viewList(this.currentList);
 	}
 
 	/**
-	 * addNewItemToCurrentList
-	 * 
-	 * This function adds a brand new default item to the current list.
-	 */
+	* addNewItemToCurrentList
+	*
+	* This function adds a brand new default item to the current list.
+	*/
 	addNewItemToCurrentList() {
 		let newItem = new ToDoListItem(this.nextListItemId++);
 		this.addItemToList(this.currentList, newItem);
@@ -58,10 +58,10 @@ export default class ToDoModel {
 	}
 
 	/**
-	 * addItemToList
-	 * 
-	 * Function for adding a new item to the list argument using the provided data arguments.
-	 */
+	* addItemToList
+	*
+	* Function for adding a new item to the list argument using the provided data arguments.
+	*/
 	addItemToList(list, initDescription, initDueDate, initStatus) {
 		let newItem = new ToDoListItem(this.nextListItemId++);
 		newItem.setDescription(initDescription);
@@ -74,35 +74,35 @@ export default class ToDoModel {
 	}
 
 	/**
-	 * addNewItemTransaction
-	 * 
-	 * Creates a new transaction for adding an item and adds it to the transaction stack.
-	 */
+	* addNewItemTransaction
+	*
+	* Creates a new transaction for adding an item and adds it to the transaction stack.
+	*/
 	addNewItemTransaction() {
 		let transaction = new AddNewItem_Transaction(this);
 		this.tps.addTransaction(transaction);
 	}
 
 	/**
-	 * addNewList
-	 * 
-	 * This function makes a new list and adds it to the application. The list will
-	 * have initName as its name.
-	 * 
-	 * @param {*} initName The name of this to add.
-	 */
+	* addNewList
+	*
+	* This function makes a new list and adds it to the application. The list will
+	* have initName as its name.
+	*
+	* @param {*} initName The name of this to add.
+	*/
 	addNewList(initName) {
 		let newList = new ToDoList(this.nextListId++);
 		if (initName)
-			newList.setName(initName);
+		newList.setName(initName);
 		this.toDoLists.push(newList);
 		this.view.appendNewListToView(newList);
 		return newList;
 	}
 
 	/**
-	 * Adds a brand new default item to the current list's items list and refreshes the view.
-	 */
+	* Adds a brand new default item to the current list's items list and refreshes the view.
+	*/
 	addNewItem() {
 		let newItem = new ToDoListItem(this.nextListItemId++);
 		this.currentList.items.push(newItem);
@@ -111,8 +111,8 @@ export default class ToDoModel {
 	}
 
 	/**
-	 * Makes a new list item with the provided data and adds it to the list.
-	 */
+	* Makes a new list item with the provided data and adds it to the list.
+	*/
 	loadItemIntoList(list, description, due_date, assigned_to, completed) {
 		let newItem = new ToDoListItem();
 		newItem.setDescription(description);
@@ -123,13 +123,13 @@ export default class ToDoModel {
 	}
 
 	/**
-	 * Load the items for the listId list into the UI.
-	 */
+	* Load the items for the listId list into the UI.
+	*/
 	loadList(listId) {
 		let listIndex = -1;
 		for (let i = 0; (i < this.toDoLists.length) && (listIndex < 0); i++) {
 			if (this.toDoLists[i].id === listId)
-				listIndex = i;
+			listIndex = i;
 		}
 		if (listIndex >= 0) {
 			let listToLoad = this.toDoLists[listIndex];
@@ -139,8 +139,8 @@ export default class ToDoModel {
 	}
 
 	/**
-	 * Redo the current transaction if there is one.
-	 */
+	* Redo the current transaction if there is one.
+	*/
 	redo() {
 		if (this.tps.hasTransactionToRedo()) {
 			this.tps.doTransaction();
@@ -148,16 +148,16 @@ export default class ToDoModel {
 	}
 
 	/**
-	 * Remove the itemToRemove from the current list and refresh.
-	 */
+	* Remove the itemToRemove from the current list and refresh.
+	*/
 	removeItem(itemToRemove) {
 		this.currentList.removeItem(itemToRemove);
 		this.view.viewList(this.currentList);
 	}
 
 	/**
-	 * Finds and then removes the current list.
-	 */
+	* Finds and then removes the current list.
+	*/
 	removeCurrentList() {
 		let indexOfList = -1;
 		for (let i = 0; (i < this.toDoLists.length) && (indexOfList < 0); i++) {
@@ -177,8 +177,8 @@ export default class ToDoModel {
 	}
 
 	/**
-	 * Undo the most recently done transaction if there is one.
-	 */
+	* Undo the most recently done transaction if there is one.
+	*/
 	undo() {
 		if (this.tps.hasTransactionToUndo()) {
 			this.tps.undoTransaction();
@@ -213,9 +213,9 @@ export default class ToDoModel {
 	}
 
 	/**
-	 * Returns list item object that matches a given list item id.
-	 * Null otherwise.
-	 */
+	* Returns list item object that matches a given list item id.
+	* Null otherwise.
+	*/
 	getItemById(id) {
 		for (let index = 0; index < this.currentList.items.length; index++) {
 			const item = this.currentList.items[index];
@@ -227,32 +227,32 @@ export default class ToDoModel {
 	}
 
 	/**
-	 * Update task text for item.
-	 */
+	* Update task text for item.
+	*/
 	updateText(item, newText) {
 		item.description = newText;
 		this.view.viewList(this.currentList); // reload the list view
 	}
 
 	/**
-	 * Update date text for item.
-	 */
+	* Update date text for item.
+	*/
 	updateDate(item, newDate) {
 		item.dueDate = newDate;
 		this.view.viewList(this.currentList); // reload the list view
 	}
 
 	/**
-	 * Update status text for item.
-	 */
+	* Update status text for item.
+	*/
 	updateStatus(item, newStatus) {
 		item.status = newStatus;
 		this.view.viewList(this.currentList); // reload the list view
 	}
 
 	/**
-	 * Move list item up using item id.
-	 */
+	* Move list item up using item id.
+	*/
 	moveItemUp(id) {
 		let toDoLists = this.toDoLists;
 		for (let i = 0; i < toDoLists.length; i++) {
@@ -270,8 +270,8 @@ export default class ToDoModel {
 	}
 
 	/**
-	 * Move list item down using item id.
-	 */
+	* Move list item down using item id.
+	*/
 	moveItemDown(id) {
 		let toDoLists = this.toDoLists;
 		for (let i = 0; i < toDoLists.length; i++) {
@@ -314,6 +314,10 @@ export default class ToDoModel {
 	deleteItemTransaction(item) {
 		let transaction = new DeleteItem_Transaction(this, item);
 		this.tps.addTransaction(transaction);
+	}
+
+	closeList() {
+		this.view.clearItemsList();
 	}
 
 }
