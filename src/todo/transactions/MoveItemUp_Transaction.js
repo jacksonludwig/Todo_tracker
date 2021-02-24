@@ -7,14 +7,14 @@ export default class MoveItemUp_Transaction extends jsTPS_Transaction {
 	constructor(initModel, id) {
 		super();
 		this.model = initModel;
-        this.id = id;
+		this.id = id;
 	}
 
 	doTransaction() {
-        this.model.moveItemUp(this.id);
+		this.model.moveItemUp(this.id);
 	}
 
 	undoTransaction() {
-        this.model.moveItemDown(this.id);
+		this.model.moveItemDown(this.id);
 	}
 }

@@ -253,12 +253,15 @@ export default class ToDoModel {
   moveItemUp(id) {
     let toDoLists = this.toDoLists;
     for (let i = 0; i < toDoLists.length; i++) {
-      for (let j = 0; j < toDoLists[i].length; j++) {
-        if (toDoLists[i][j].id === id) {
+      for (let j = 0; j < toDoLists[i].items.length; j++) {
+        if (toDoLists[i].items[j].id === id) {
+					console.log("clicked");
           // TODO account for being top list
-          let removed = toDoLists[i].splice(j, 1);
-          toDoLists[i].splice(j - 1, 0, removed);
-          this.view.refreshLists(toDoLists);
+					let removed = toDoLists[i].items[j];
+					console.log(removed);
+          toDoLists[i].items.splice(j, 1);
+          toDoLists[i].items.splice(j - 1, 0, removed);
+          this.view.viewList(this.currentList);
           break;
         }
       }
