@@ -42,7 +42,6 @@ export default class ToDoController {
 		}
 
 		// Handle task edits
-		// TODO make faster
 		document.getElementById("todo-list-items-div").addEventListener('DOMNodeInserted', function () {
 			let items = document.getElementsByClassName("task-col");
 			for (let index = 0; index < items.length; index++) {
@@ -64,7 +63,6 @@ export default class ToDoController {
 		});
 
 		// Handle date edits
-		// TODO make faster
 		document.getElementById("todo-list-items-div").addEventListener('DOMNodeInserted', function () {
 			let items = document.getElementsByClassName("due-date-col");
 			for (let index = 0; index < items.length; index++) {
@@ -76,6 +74,23 @@ export default class ToDoController {
 						let oldDate = listItem.dueDate;
 						let newDate = event.target.value;
 						appModel.editDateTextTransaction(oldDate, newDate, listItem);
+					}
+				}
+			}
+		});
+
+		// Handle status edits
+		document.getElementById("todo-list-items-div").addEventListener('DOMNodeInserted', function () {
+			let items = document.getElementsByClassName("status-col");
+			for (let index = 0; index < items.length; index++) {
+				const item = items[index];
+				if (item.onchange === null) {
+					item.onchange = function(event) {
+						let id = Number(item.parentNode.id.replace(/\D/g, "")); // get id of clicked item
+						let listItem = appModel.getItemById(id);
+						let oldStatus = listItem.status;
+						let newStatus = event.target.value;
+						appModel.editStatusTextTransaction(oldStatus, newStatus, listItem);
 					}
 				}
 			}

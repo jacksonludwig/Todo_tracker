@@ -6,6 +6,7 @@ import jsTPS from '../common/jsTPS.js'
 import AddNewItem_Transaction from './transactions/AddNewItem_Transaction.js'
 import EditTextTask_Transaction from './transactions/EditTextTask_Transaction.js'
 import EditDateText_Transaction from './transactions/EditDateText_Transaction.js'
+import EditStatusText_Transaction from './transactions/EditStatusText_Transaction.js'
 
 /**
  * ToDoModel
@@ -222,7 +223,7 @@ export default class ToDoModel {
 	}
 
 	/**
-	 * Update task text for item using its id.
+	 * Update task text for item.
 	 */
 	updateText(item, newText) {
 		item.description = newText;
@@ -230,10 +231,18 @@ export default class ToDoModel {
 	}
 
 	/**
-	 * Update date text for item using its id.
+	 * Update date text for item.
 	 */
 	updateDate(item, newDate) {
 		item.dueDate = newDate;
+		this.view.viewList(this.currentList); // reload the list view
+	}
+
+	/**
+	 * Update status text for item.
+	 */
+	updateStatus(item, newStatus) {
+		item.status = newStatus;
 		this.view.viewList(this.currentList); // reload the list view
 	}
 
@@ -246,5 +255,11 @@ export default class ToDoModel {
     let transaction = new EditDateText_Transaction(this, oldDate, newDate, item);
     this.tps.addTransaction(transaction);
   }
+
+  editStatusTextTransaction(oldStatus, newStatus, item) {
+    let transaction = new EditStatusText_Transaction(this, oldStatus, newStatus, item);
+    this.tps.addTransaction(transaction);
+  }
+
 
 }
