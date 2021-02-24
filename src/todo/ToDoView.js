@@ -28,6 +28,18 @@ export default class ToDoView {
 		}
 	}
 
+	// Run when no list is in view
+	obscureListControls() {
+		let items = document.getElementsByClassName("list-controls-col");
+		items[0].style.opacity = 0.25;
+	}
+
+	// Run when a list is in view
+	highlightListControls() {
+		let items = document.getElementsByClassName("list-controls-col");
+		items[0].style.opacity = 1.0;
+	}
+
 	/**
 	 * Remove all items from view
 	 */
@@ -105,6 +117,7 @@ export default class ToDoView {
 			}
 			itemsListDiv.innerHTML += listItemElement;
 		}
+		this.highlightListControls();
 	}
 
 	// THE VIEW NEEDS THE CONTROLLER TO PROVIDE PROPER RESPONSES

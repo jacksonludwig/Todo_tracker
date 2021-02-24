@@ -76,3 +76,7 @@
     font-family: var(--font-primary);
     color: var(--swatch-text);
 }
+
+.list-controls-col {
+    opacity: 0.25;
+}

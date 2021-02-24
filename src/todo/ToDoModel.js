@@ -318,6 +318,7 @@ export default class ToDoModel {
 
 	closeList() {
 		this.view.clearItemsList();
+		this.view.obscureListControls();
 	}
 
 }
