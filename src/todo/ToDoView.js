@@ -73,6 +73,17 @@ export default class ToDoView {
 		}
 	}
 
+	// Blur the arrow up icon of the item with a given ID
+	blurUpArrow(id) {
+		let item = document.getElementById("todo-list-item-" + id);
+		let controls = item.lastChild;
+		for (let i = 0; i < controls.childNodes.length; i++) {
+			if (controls.childNodes[i].innerHTML === "keyboard_arrow_up") {
+				controls.childNodes[i].style.opacity = 0.15;
+			}
+		}
+	}
+
 	generateListElementIncomplete(listItem) {
 		return "<div id='todo-list-item-" + listItem.id + "' class='list-item-card'>"
 			+ "<input type='text' class='task-col' value='" + listItem.description + "'/>"

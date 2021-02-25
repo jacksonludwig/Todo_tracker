@@ -269,17 +269,38 @@ export default class ToDoModel {
 	}
 
 	/**
+	 * check if item with given id is first in list
+	 */
+	isFirstItem (id) {
+		let lastItem = this.currentList.getItemAtIndex(0);
+		let clickedItem = this.getItemById(id);
+		return lastItem === clickedItem;
+	}
+
+	/**
+	 * check if item with given id is last in list
+	 */
+	isLastItem(id) {
+		let lastItem = this.currentList.getItemAtIndex(this.currentList.items.length);
+		let clickedItem = this.getItemById(id);
+		return lastItem === clickedItem;
+	}
+
+	/**
 	* Move list item up using item id.
 	*/
 	moveItemUp(id) {
 		let toDoLists = this.toDoLists;
 		for (let i = 0; i < toDoLists.length; i++) {
 			for (let j = 0; j < toDoLists[i].items.length; j++) {
-				if (toDoLists[i].items[j].id === id) {
-					let removed = toDoLists[i].items[j];
+				let item = toDoLists[i].items[j];
+				if (item.id === id) {
 					toDoLists[i].items.splice(j, 1);
-					toDoLists[i].items.splice(j - 1, 0, removed);
+					toDoLists[i].items.splice(j - 1, 0, item);
 					this.view.viewList(this.currentList);
+					// if (this.isFirstItem(toDoLists[i].items[j - 1].id)) {
+					// 	this.view.blurUpArrow(toDoLists[i].items[j - 1].id);
+					// }
 					break;
 				}
 			}
@@ -293,10 +314,10 @@ export default class ToDoModel {
 		let toDoLists = this.toDoLists;
 		for (let i = 0; i < toDoLists.length; i++) {
 			for (let j = 0; j < toDoLists[i].items.length; j++) {
-				if (toDoLists[i].items[j].id === id) {
-					let removed = toDoLists[i].items[j];
+				let item = toDoLists[i].items[j];
+				if (item.id === id) {
 					toDoLists[i].items.splice(j, 1);
-					toDoLists[i].items.splice(j + 1, 0, removed);
+					toDoLists[i].items.splice(j + 1, 0, item);
 					this.view.viewList(this.currentList);
 					break;
 				}
@@ -320,17 +341,13 @@ export default class ToDoModel {
 	}
 
 	moveItemUpTransaction(id) {
-		let firstItem = this.currentList.getItemAtIndex(0);
-		let clickedItem = this.getItemById(id);
-		if (firstItem !== clickedItem) {
+		if (!this.isFirstItem(id)) {
 			let transaction = new MoveItemUp_Transaction(this, id);
 			this.tps.addTransaction(transaction);
 		}
 	}
 	moveItemDownTransaction(id) {
-		let lastItem = this.currentList.getItemAtIndex(this.currentList.items.length);
-		let clickedItem = this.getItemById(id);
-		if (lastItem !== clickedItem) {
+		if (!this.isLastItem(id)) {
 			let transaction = new MoveItemDown_Transaction(this, id);
 			this.tps.addTransaction(transaction);
 		}
