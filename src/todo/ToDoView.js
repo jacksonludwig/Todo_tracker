@@ -34,6 +34,7 @@ export default class ToDoView {
 		for (let index = 0; index < items.length; index++) {
 			items[index].style.opacity = .25;
 		}
+		document.getElementById("add-list-button").style.opacity = 1.0;
 		this.controller.disableListControls();
 	}
 
@@ -43,6 +44,7 @@ export default class ToDoView {
 		for (let index = 0; index < items.length; index++) {
 			items[index].style.opacity = 1.0;
 		}
+		document.getElementById("add-list-button").style.opacity = .25;
 		this.controller.enableListControls();
 	}
 

@@ -15,15 +15,17 @@ export default class ToDoController {
 
 		// SETUP ALL THE EVENT HANDLERS SINCE THEY USE THE MODEL
 		document.getElementById("add-list-button").onmousedown = function() {
-			appModel.addNewList();
+			if (!appModel.listControlsEnabled) {
+				appModel.addNewList();
+			}
 		}
 
 		document.getElementById("undo-button").onmousedown = function() {
-			appModel.undo();
+				appModel.undo();
 		}
 
 		document.getElementById("redo-button").onmousedown = function() {
-			appModel.redo();
+				appModel.redo();
 		}
 
 		document.getElementById("add-item-button").onmousedown = function() {

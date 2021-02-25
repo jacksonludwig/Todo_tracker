@@ -89,3 +89,7 @@ select {
 .main-list-control {
 	opacity: 0.25;
 }
+
+#add-list-button {
+	opacity: 1.0;
+}
