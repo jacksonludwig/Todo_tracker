@@ -276,7 +276,6 @@ export default class ToDoModel {
 		for (let i = 0; i < toDoLists.length; i++) {
 			for (let j = 0; j < toDoLists[i].items.length; j++) {
 				if (toDoLists[i].items[j].id === id) {
-					// TODO account for being top list
 					let removed = toDoLists[i].items[j];
 					toDoLists[i].items.splice(j, 1);
 					toDoLists[i].items.splice(j - 1, 0, removed);
@@ -295,7 +294,6 @@ export default class ToDoModel {
 		for (let i = 0; i < toDoLists.length; i++) {
 			for (let j = 0; j < toDoLists[i].items.length; j++) {
 				if (toDoLists[i].items[j].id === id) {
-					// TODO account for being bottom list
 					let removed = toDoLists[i].items[j];
 					toDoLists[i].items.splice(j, 1);
 					toDoLists[i].items.splice(j + 1, 0, removed);
@@ -322,12 +320,20 @@ export default class ToDoModel {
 	}
 
 	moveItemUpTransaction(id) {
-		let transaction = new MoveItemUp_Transaction(this, id);
-		this.tps.addTransaction(transaction);
+		let firstItem = this.currentList.getItemAtIndex(0);
+		let clickedItem = this.getItemById(id);
+		if (firstItem !== clickedItem) {
+			let transaction = new MoveItemUp_Transaction(this, id);
+			this.tps.addTransaction(transaction);
+		}
 	}
 	moveItemDownTransaction(id) {
-		let transaction = new MoveItemDown_Transaction(this, id);
-		this.tps.addTransaction(transaction);
+		let lastItem = this.currentList.getItemAtIndex(this.currentList.items.length);
+		let clickedItem = this.getItemById(id);
+		if (lastItem !== clickedItem) {
+			let transaction = new MoveItemDown_Transaction(this, id);
+			this.tps.addTransaction(transaction);
+		}
 	}
 	deleteItemTransaction(item) {
 		let transaction = new DeleteItem_Transaction(this, item);
