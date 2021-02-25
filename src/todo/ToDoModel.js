@@ -298,9 +298,6 @@ export default class ToDoModel {
 					toDoLists[i].items.splice(j, 1);
 					toDoLists[i].items.splice(j - 1, 0, item);
 					this.view.viewList(this.currentList);
-					// if (this.isFirstItem(toDoLists[i].items[j - 1].id)) {
-					// 	this.view.blurUpArrow(toDoLists[i].items[j - 1].id);
-					// }
 					break;
 				}
 			}

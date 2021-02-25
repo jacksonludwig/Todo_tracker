@@ -84,6 +84,17 @@ export default class ToDoView {
 		}
 	}
 
+	// Blur the arrow down icon of the item with a given ID
+	blurDownArrow(id) {
+		let item = document.getElementById("todo-list-item-" + id);
+		let controls = item.lastChild;
+		for (let i = 0; i < controls.childNodes.length; i++) {
+			if (controls.childNodes[i].innerHTML === "keyboard_arrow_down") {
+				controls.childNodes[i].style.opacity = 0.15;
+			}
+		}
+	}
+
 	generateListElementIncomplete(listItem) {
 		return "<div id='todo-list-item-" + listItem.id + "' class='list-item-card'>"
 			+ "<input type='text' class='task-col' value='" + listItem.description + "'/>"
@@ -136,6 +147,11 @@ export default class ToDoView {
 				listItemElement = this.generateListElementIncomplete(listItem);
 			}
 			itemsListDiv.innerHTML += listItemElement;
+			if (i === 0 ) {
+				this.blurUpArrow(listItem.id);
+			} else if (i === list.items.length - 1) {
+				this.blurDownArrow(listItem.id);
+			}
 		}
 		this.enableListControls();
 	}
