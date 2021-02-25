@@ -30,15 +30,19 @@ export default class ToDoView {
 
 	// Run when no list is in view
 	obscureListControls() {
-		let items = document.getElementsByClassName("list-controls-col");
-		items[0].style.opacity = 0.25;
+		let items = document.getElementsByClassName("main-list-control");
+		for (let index = 0; index < items.length; index++) {
+			items[index].style.opacity = .25;
+		}
 		this.controller.disableListControls();
 	}
 
 	// Run when a list is in view
 	enableListControls() {
-		let items = document.getElementsByClassName("list-controls-col");
-		items[0].style.opacity = 1.0;
+		let items = document.getElementsByClassName("main-list-control");
+		for (let index = 0; index < items.length; index++) {
+			items[index].style.opacity = 1.0;
+		}
 		this.controller.enableListControls();
 	}
 
@@ -52,6 +56,7 @@ export default class ToDoView {
 		while (parent.firstChild) {
 			parent.removeChild(parent.firstChild);
 		}
+		this.obscureListControls();
 	}
 
 	// REFRESHES ALL THE LISTS IN THE LEFT SIDEBAR
