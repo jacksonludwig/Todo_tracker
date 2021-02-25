@@ -32,6 +32,9 @@ export default class ToDoModel {
 
 		// WE'LL USE THIS TO ASSIGN ID NUMBERS TO EVERY LIST ITEM
 		this.nextListItemId = 0;
+
+		// Keep track of if we should be enabling list controls or not
+		this.listControlsEnabled = false;
 	}
 
 	/**

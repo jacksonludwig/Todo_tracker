@@ -32,12 +32,14 @@ export default class ToDoView {
 	obscureListControls() {
 		let items = document.getElementsByClassName("list-controls-col");
 		items[0].style.opacity = 0.25;
+		this.controller.disableListControls();
 	}
 
 	// Run when a list is in view
-	highlightListControls() {
+	enableListControls() {
 		let items = document.getElementsByClassName("list-controls-col");
 		items[0].style.opacity = 1.0;
+		this.controller.enableListControls();
 	}
 
 	/**
@@ -117,7 +119,7 @@ export default class ToDoView {
 			}
 			itemsListDiv.innerHTML += listItemElement;
 		}
-		this.highlightListControls();
+		this.enableListControls();
 	}
 
 	// THE VIEW NEEDS THE CONTROLLER TO PROVIDE PROPER RESPONSES

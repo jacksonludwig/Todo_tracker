@@ -27,21 +27,27 @@ export default class ToDoController {
 		}
 
 		document.getElementById("add-item-button").onmousedown = function() {
-			appModel.addNewItemTransaction();
+			if (appModel.listControlsEnabled) {
+				appModel.addNewItemTransaction();
+			}
+		}
+		document.getElementById("delete-list-button").onmousedown = function() {
+			if (appModel.listControlsEnabled) {
+				appModel.showListDeleteConfirm();
+			}
+		}
+		document.getElementById("close-list-button").onmousedown = function () {
+			if (appModel.listControlsEnabled) {
+				appModel.closeList();
+			}
 		}
 
-		document.getElementById("delete-list-button").onmousedown = function() {
-			appModel.showListDeleteConfirm();
-		}
 		document.getElementById("confirmDeleteSpan").onmousedown = function () {
 			appModel.removeCurrentList();
 			appModel.hideListDeleteConfirm();
 		}
 		document.getElementById("cancelDeleteSpan").onmousedown = function () {
 			appModel.hideListDeleteConfirm();
-		}
-		document.getElementById("close-list-button").onmousedown = function () {
-			appModel.closeList();
 		}
 
 		// Handle move up/down/delete
@@ -122,6 +128,14 @@ export default class ToDoController {
 				}
 			}
 		});
+	}
+
+	enableListControls() {
+		this.model.listControlsEnabled = true;
+	}
+
+	disableListControls() {
+		this.model.listControlsEnabled = false;
 	}
 
 	// PROVIDES THE RESPONSE TO WHEN A USER CLICKS ON A LIST TO LOAD
