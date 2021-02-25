@@ -95,6 +95,19 @@ export default class ToDoView {
 		}
 	}
 
+	obscureUndo() {
+		document.getElementById("undo-button").style.opacity = 0.15;
+	}
+	obscureRedo() {
+		document.getElementById("redo-button").style.opacity = 0.15;
+	}
+	showUndo() {
+		document.getElementById("undo-button").style.opacity = 1.0;
+	}
+	showRedo() {
+		document.getElementById("redo-button").style.opacity = 1.0;
+	}
+
 	generateListElementIncomplete(listItem) {
 		return "<div id='todo-list-item-" + listItem.id + "' class='list-item-card'>"
 			+ "<input type='text' class='task-col' value='" + listItem.description + "'/>"

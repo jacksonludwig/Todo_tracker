@@ -21,16 +21,23 @@ export default class ToDoController {
 		}
 
 		document.getElementById("undo-button").onmousedown = function() {
-				appModel.undo();
+			appModel.undo();
+			console.log("num transaction: " + appModel.tps.numTransactions);
+			console.log("most recent transaction: " + appModel.tps.mostRecentTransaction);
+			appModel.handleUndoRedoControls();
 		}
 
 		document.getElementById("redo-button").onmousedown = function() {
-				appModel.redo();
+			appModel.redo();
+			console.log("num transaction: " + appModel.tps.numTransactions);
+			console.log("most recent transaction: " + appModel.tps.mostRecentTransaction);
+			appModel.handleUndoRedoControls();
 		}
 
 		document.getElementById("add-item-button").onmousedown = function() {
 			if (appModel.listControlsEnabled) {
 				appModel.addNewItemTransaction();
+				appModel.handleUndoRedoControls();
 			}
 		}
 		document.getElementById("delete-list-button").onmousedown = function() {
@@ -71,6 +78,7 @@ export default class ToDoController {
 							let listItem = appModel.getItemById(id);
 							appModel.deleteItemTransaction(listItem);
 						}
+						appModel.handleUndoRedoControls();
 					}
 				}
 			}
@@ -92,6 +100,7 @@ export default class ToDoController {
 						} else if (oldText !== newText) {
 							appModel.editTaskTextTransaction(oldText, newText, listItem);
 						}
+						appModel.handleUndoRedoControls();
 					}
 				}
 			}
@@ -109,6 +118,7 @@ export default class ToDoController {
 						let oldDate = listItem.dueDate;
 						let newDate = event.target.value;
 						appModel.editDateTextTransaction(oldDate, newDate, listItem);
+						appModel.handleUndoRedoControls();
 					}
 				}
 			}
@@ -126,6 +136,7 @@ export default class ToDoController {
 						let oldStatus = listItem.status;
 						let newStatus = event.target.value;
 						appModel.editStatusTextTransaction(oldStatus, newStatus, listItem);
+						appModel.handleUndoRedoControls();
 					}
 				}
 			}

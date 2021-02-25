@@ -93,3 +93,7 @@ select {
 #add-list-button {
 	opacity: 1.0;
 }
+
+#undo-button, #redo-button {
+	opacity: 0.15;
+}

@@ -354,6 +354,22 @@ export default class ToDoModel {
 		this.tps.addTransaction(transaction);
 	}
 
+	/**
+	 * Check to see if we should be highlighting undo/redo
+	 */
+	handleUndoRedoControls() {
+			if (this.tps.mostRecentTransaction === -1) {
+				this.view.obscureUndo();
+			} else {
+				this.view.showUndo();
+			}
+			if (this.tps.mostRecentTransaction === this.tps.numTransactions - 1) {
+				this.view.obscureRedo();
+			} else {
+				this.view.showRedo();
+			}
+	}
+
 	closeList() {
 		this.view.clearItemsList();
 		this.view.obscureListControls();
