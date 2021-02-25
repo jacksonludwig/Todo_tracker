@@ -41,9 +41,22 @@ export default class ToDoList {
   }
 
   /**
+   * Adds an item to a specific spot in the list
+   * 
+   * @param {TodoListItem} itemToAdd Item to add to the list.
+	 * @param {Number} index Spot to place the item.
+	 *
+	 * @author Jackson
+   */
+	addItemToIndex(itemToAdd, index) {
+		this.items.splice(index, 0, itemToAdd);
+	}
+
+  /**
    * Finds and then removes the argument from the list.
    * 
    * @param {TodoListItem} itemToRemove Item to remove from the list.
+	 * @returns Index of removed item
    */
   removeItem(itemToRemove) {
     let indexOfItem = -1;
@@ -53,6 +66,7 @@ export default class ToDoList {
       }
     }
     this.items.splice(indexOfItem, 1);
+		return indexOfItem;
   }
 
   /**

@@ -8,13 +8,14 @@ export default class DeleteItem_Transaction extends jsTPS_Transaction {
 		super();
 		this.model = initModel;
 		this.item = item;
+		this.deleteLocation = 0;
 	}
 
 	doTransaction() {
-		this.model.removeItem(this.item);
+		this.deleteLocation = this.model.removeItem(this.item);
 	}
 
 	undoTransaction() {
-		this.model.addItemToCurrentList(this.item);
+		this.model.addItemToCurrentList(this.item, this.deleteLocation);
 	}
 }

@@ -50,6 +50,19 @@ export default class ToDoModel {
 	}
 
 	/**
+	* This function adds the itemToAdd argument to the current list being edited using a given position.
+	*
+	* @param {*} itemToAdd A instantiated item to add to the list.
+	* @param {Number} index Where to add the new item.
+	*
+	* @author Jackson
+	*/
+	addItemToCurrentList(itemToAdd, index) {
+		this.currentList.addItemToIndex(itemToAdd, index);
+		this.view.viewList(this.currentList);
+	}
+
+	/**
 	* addNewItemToCurrentList
 	*
 	* This function adds a brand new default item to the current list.
@@ -152,10 +165,12 @@ export default class ToDoModel {
 
 	/**
 	* Remove the itemToRemove from the current list and refresh.
+	* @returns Index of removed item
 	*/
 	removeItem(itemToRemove) {
-		this.currentList.removeItem(itemToRemove);
+		let removedIndex = this.currentList.removeItem(itemToRemove);
 		this.view.viewList(this.currentList);
+		return removedIndex;
 	}
 
 	/**
