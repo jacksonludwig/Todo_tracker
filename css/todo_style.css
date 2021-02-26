@@ -121,3 +121,16 @@ option:first-child {
 .first-todo-list {
 	background-color: rgb(64, 69, 78);
 }
+
+#confirmDeleteSpan:hover,
+#confirmDeleteSpan:focus,
+#cancelDeleteSpan:hover,
+#cancelDeleteSpan:focus {
+  font-weight:bold;
+  font-size: 1.2em;
+  cursor: pointer;
+}
+
+.material-icons {
+	cursor: pointer;
+}
