@@ -32,11 +32,13 @@
 #left-sidebar {
 	background-color: var(--swatch-complement);
 	color: rgb(233,237,240);
+	padding: 10px;
 }
 
 #workspace {
 	background-color: var(--swatch-primary);
 	color: rgb(233,237,240);
+	padding: 10px;
 }
 
 #title-div {
@@ -60,6 +62,13 @@
 
 .list-item-card {
 	border-bottom: solid;
+	margin-right: 10px;
+}
+
+.popup-data {
+	font-family: var(--font-primary);
+	background-color: var(--swatch-primary);
+	color: var(--swatch-text);
 }
 
 .todo_button {
@@ -97,4 +106,8 @@ select {
 
 #undo-button, #redo-button {
 	opacity: 0.15;
+}
+
+.yesNoSpans {
+	padding: 10px;
 }

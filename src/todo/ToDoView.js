@@ -17,7 +17,7 @@ export default class ToDoView {
 		let newListId = "todo-list-" + newList.id;
 		let listElement = document.createElement("div");
 		listElement.setAttribute("id", newListId);
-		listElement.setAttribute("class", "todo_button");
+		listElement.setAttribute("class", "todo_button todo_lists_button");
 		listElement.appendChild(document.createTextNode(newList.name));
 		listsElement.appendChild(listElement);
 
