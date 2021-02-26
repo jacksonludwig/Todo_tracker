@@ -6,12 +6,12 @@
     padding: 1px;
     grid-template-rows: 5% 95%;
     grid-template-columns: 12% 88%;
+    grid-row-gap: 10px;
 }
 
 #navbar {
     grid-column: 1 / span 2;
     grid-row: 1 / span 1;
-    margin-bottom: 8px;
 }
 
 #left-sidebar {
@@ -23,6 +23,7 @@
 #left-sidebar-header {
     display: grid;
     grid-template-columns: 60% 40%;
+    height: 5%;
 }
 
 #left-sidebar-header-text {

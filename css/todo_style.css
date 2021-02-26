@@ -43,6 +43,7 @@
 	color: rgb(255,200,25);
 	font-weight: bold;
 	font-size: 14pt;
+	align-items: center;
 }
 
 #left-sidebar-header {
