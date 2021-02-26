@@ -370,6 +370,14 @@ export default class ToDoModel {
 			}
 	}
 
+	/**
+	 * Use a new jsTPS fora newly loaded list
+	 */
+	clearTransactionStack() {
+		this.tps.clearAllTransactions();
+		this.handleUndoRedoControls();
+	}
+
 	closeList() {
 		this.view.clearItemsList();
 		this.view.obscureListControls();

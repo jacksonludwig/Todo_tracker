@@ -15,22 +15,18 @@ export default class ToDoController {
 
 		// SETUP ALL THE EVENT HANDLERS SINCE THEY USE THE MODEL
 		document.getElementById("add-list-button").onmousedown = function() {
-			if (!appModel.listControlsEnabled) {
-				appModel.addNewList();
-			}
+			appModel.addNewList();
 		}
 
 		document.getElementById("undo-button").onmousedown = function() {
 			appModel.undo();
-			console.log("num transaction: " + appModel.tps.numTransactions);
-			console.log("most recent transaction: " + appModel.tps.mostRecentTransaction);
 			appModel.handleUndoRedoControls();
 		}
 
 		document.getElementById("redo-button").onmousedown = function() {
-			appModel.redo();
-			console.log("num transaction: " + appModel.tps.numTransactions);
-			console.log("most recent transaction: " + appModel.tps.mostRecentTransaction);
+			if (appModel.listControlsEnabled) {
+				appModel.redo();
+			}
 			appModel.handleUndoRedoControls();
 		}
 
@@ -48,6 +44,7 @@ export default class ToDoController {
 		document.getElementById("close-list-button").onmousedown = function () {
 			if (appModel.listControlsEnabled) {
 				appModel.closeList();
+				appModel.clearTransactionStack();
 			}
 		}
 
