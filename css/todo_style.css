@@ -50,6 +50,7 @@
 
 #left-sidebar-header {
 	border-bottom: dotted;
+	background-color: var(--swatch-complement);
 }
 
 #todo-list-table-header {
@@ -115,4 +116,8 @@ option:first-child {
 
 .yesNoSpans {
 	padding: 10px;
+}
+
+.first-todo-list {
+	background-color: rgb(64, 69, 78);
 }

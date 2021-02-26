@@ -24,9 +24,7 @@ export default class ToDoController {
 		}
 
 		document.getElementById("redo-button").onmousedown = function() {
-			if (appModel.listControlsEnabled) {
-				appModel.redo();
-			}
+			appModel.redo();
 			appModel.handleUndoRedoControls();
 		}
 
@@ -65,13 +63,10 @@ export default class ToDoController {
 					items[i].onclick = function () {
 						let id = Number(items[i].parentNode.parentNode.id.replace(/\D/g, "")); // get id of clicked item
 						if (items[i].innerHTML === "keyboard_arrow_up") {
-							console.log("up clicked");
 							appModel.moveItemUpTransaction(id);
 						} else if (items[i].innerHTML === "keyboard_arrow_down") {
-							console.log("down clicked");
 							appModel.moveItemDownTransaction(id);
 						} else {
-							console.log("delete clicked");
 							let listItem = appModel.getItemById(id);
 							appModel.deleteItemTransaction(listItem);
 						}

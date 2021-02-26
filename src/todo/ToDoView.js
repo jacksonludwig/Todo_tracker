@@ -9,7 +9,7 @@ export default class ToDoView {
 	constructor() { }
 
 	// ADDS A LIST TO SELECT FROM IN THE LEFT SIDEBAR
-	appendNewListToView(newList) {
+	appendNewListToView(newList, index) {
 		// GET THE UI CONTROL WE WILL APPEND IT TO
 		let listsElement = document.getElementById("todo-lists-list");
 
@@ -18,6 +18,9 @@ export default class ToDoView {
 		let listElement = document.createElement("div");
 		listElement.setAttribute("id", newListId);
 		listElement.setAttribute("class", "todo_button todo_lists_button");
+		if (index === 0) {
+			listElement.classList.add("first-todo-list");
+		}
 		listElement.appendChild(document.createTextNode(newList.name));
 		listsElement.appendChild(listElement);
 
@@ -69,7 +72,7 @@ export default class ToDoView {
 
 		for (let i = 0; i < lists.length; i++) {
 			let list = lists[i];
-			this.appendNewListToView(list);
+			this.appendNewListToView(list, i);
 		}
 	}
 
