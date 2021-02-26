@@ -111,7 +111,7 @@ export default class ToDoView {
 	generateListElementIncomplete(listItem) {
 		return "<div id='todo-list-item-" + listItem.id + "' class='list-item-card'>"
 			+ "<input type='text' class='task-col' value='" + listItem.description + "'/>"
-			+ "<input type='date' class='due-date-col' value='" + listItem.dueDate + "'/>"
+			+ "<input required='required' type='date' class='due-date-col' value='" + listItem.dueDate + "'/>"
 			+ "<select name='status' style='Color:#f5bc75' class='status-col' id='status-" + listItem.id + "'>"
 			+ "<option class='status-opt' value='incomplete' selected>" + listItem.status + "</option>"
 			+ "<option class='status-opt' value='complete'>complete</option>"
@@ -128,7 +128,7 @@ export default class ToDoView {
 	generateListElementComplete(listItem) {
 		return "<div id='todo-list-item-" + listItem.id + "' class='list-item-card'>"
 			+ "<input type='text' class='task-col' value='" + listItem.description + "'/>"
-			+ "<input type='date' class='due-date-col' value='" + listItem.dueDate + "'/>"
+			+ "<input required='required' type='date' class='due-date-col' value='" + listItem.dueDate + "'/>"
 			+ "<select name='status' style='Color:#8ed4f8' class='status-col' id='status-" + listItem.id + "'>"
 			+ "<option class='status-opt' value='complete' selected>" + listItem.status + "</option>"
 			+ "<option class='status-opt' value='incomplete'>incomplete</option>"
