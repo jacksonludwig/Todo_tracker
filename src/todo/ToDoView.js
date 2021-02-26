@@ -51,6 +51,10 @@ export default class ToDoView {
 		this.controller.enableListControls();
 	}
 
+	unHighlightChosenList() {
+		document.getElementsByClassName("first-todo-list")[0].style.backgroundColor = "#353a44";
+	}
+
 	/**
 	 * Remove all items from view
 	 */
