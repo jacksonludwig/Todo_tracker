@@ -134,6 +134,14 @@ export default class ToDoController {
 						let newStatus = event.target.value;
 						appModel.editStatusTextTransaction(oldStatus, newStatus, listItem);
 						appModel.handleUndoRedoControls();
+
+						// make sure the colors are correct
+						let selected = document.getElementById('status-' + id);
+						if (oldStatus === 'complete') {
+							selected.style.color = '#f5bc75';
+						} else {
+							selected.style.color = '#8ed4f8';
+						}
 					}
 				}
 			}

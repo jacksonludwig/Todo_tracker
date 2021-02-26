@@ -96,6 +96,10 @@ select {
 	appearance: none;
 }
 
+option:first-child {
+	color: green;
+}
+
 .main-list-control {
 	opacity: 0.15;
 }
