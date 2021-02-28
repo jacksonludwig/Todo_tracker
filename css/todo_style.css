@@ -113,6 +113,11 @@ option:first-child {
 #undo-button, #redo-button {
 	opacity: 0.15;
 }
+#undo-button:hover,
+#redo-button:hover,
+#add-list-button:hover {
+	color: white;
+}
 
 .yesNoSpans {
 	padding: 10px;
@@ -146,4 +151,7 @@ input {
 
 .material-icons {
 	cursor: pointer;
+}
+.material-icons:hover {
+	color: #8ed4f8;
 }

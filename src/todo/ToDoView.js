@@ -6,9 +6,7 @@
 * This class generates all HTML content for the UI.
 */
 export default class ToDoView {
-	constructor() { 
-		this.firstGen = true;
-	}
+	constructor() {}
 
 	// ADDS A LIST TO SELECT FROM IN THE LEFT SIDEBAR
 	appendNewListToView(newList, index) {
@@ -24,9 +22,8 @@ export default class ToDoView {
 		listElement.setAttribute("id", newListId);
 		listElement.setAttribute("class", "todo_button todo_lists_button");
 		listElement.setAttribute("value", newList.name);
-		if (index === 0 || this.firstGen) {
+		if (index === 0) {
 			listElement.classList.add("first-todo-list");
-			this.firstGen = false;
 		}
 		listElement.onblur = function (event) {
 			let oldText = newList.name;
