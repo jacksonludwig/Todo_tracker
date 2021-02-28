@@ -6,29 +6,35 @@
 * This class generates all HTML content for the UI.
 */
 export default class ToDoView {
-	constructor() { }
+	constructor() { 
+		this.firstGen = true;
+	}
 
 	// ADDS A LIST TO SELECT FROM IN THE LEFT SIDEBAR
 	appendNewListToView(newList, index) {
+		// SETUP THE HANDLER FOR WHEN SOMEONE MOUSE CLICKS ON OUR LIST
+		let thisController = this.controller;
+
 		// GET THE UI CONTROL WE WILL APPEND IT TO
 		let listsElement = document.getElementById("todo-lists-list");
 
 		// MAKE AND ADD THE NODE
 		let newListId = "todo-list-" + newList.id;
-		let listElement = document.createElement("div");
+		// let listElement = document.createElement("div");
+		let listElement = document.createElement("input");
 		listElement.setAttribute("id", newListId);
 		listElement.setAttribute("class", "todo_button todo_lists_button");
-		if (index === 0) {
+		listElement.setAttribute("value", newList.name);
+		if (index === 0 || this.firstGen) {
 			listElement.classList.add("first-todo-list");
+			this.firstGen = false;
+		} else {
+			listElement.onmousedown = function() {
+				thisController.handleLoadList(newList.id);
+			}
 		}
-		listElement.appendChild(document.createTextNode(newList.name));
+		// listElement.appendChild(document.createTextNode(newList.name));
 		listsElement.appendChild(listElement);
-
-		// SETUP THE HANDLER FOR WHEN SOMEONE MOUSE CLICKS ON OUR LIST
-		let thisController = this.controller;
-		listElement.onmousedown = function() {
-			thisController.handleLoadList(newList.id);
-		}
 	}
 
 	// Run when no list is in view

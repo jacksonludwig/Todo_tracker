@@ -122,6 +122,11 @@ option:first-child {
 	background-color: rgb(64, 69, 78);
 }
 
+.first-todo-list:hover {
+	cursor: text;
+	background-color: grey;
+}
+
 #confirmDeleteSpan:hover,
 #confirmDeleteSpan:focus,
 #cancelDeleteSpan:hover,
