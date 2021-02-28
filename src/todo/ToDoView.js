@@ -20,7 +20,6 @@ export default class ToDoView {
 
 		// MAKE AND ADD THE NODE
 		let newListId = "todo-list-" + newList.id;
-		// let listElement = document.createElement("div");
 		let listElement = document.createElement("input");
 		listElement.setAttribute("id", newListId);
 		listElement.setAttribute("class", "todo_button todo_lists_button");
@@ -28,12 +27,19 @@ export default class ToDoView {
 		if (index === 0 || this.firstGen) {
 			listElement.classList.add("first-todo-list");
 			this.firstGen = false;
-		} else {
-			listElement.onmousedown = function() {
-				thisController.handleLoadList(newList.id);
+		}
+		listElement.onblur = function (event) {
+			let oldText = newList.name;
+			let newText = event.target.value;
+			if (newText === "") {
+				event.target.value = oldText;
+			} else if (oldText !== newText) {
+				thisController.model.editListNameTransaction(oldText, newText, newList);
 			}
 		}
-		// listElement.appendChild(document.createTextNode(newList.name));
+		listElement.ondblclick = function() {
+			thisController.handleLoadList(newList.id);
+		}
 		listsElement.appendChild(listElement);
 	}
 

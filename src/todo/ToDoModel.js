@@ -10,6 +10,7 @@ import EditStatusText_Transaction from './transactions/EditStatusText_Transactio
 import MoveItemUp_Transaction from './transactions/MoveItemUp_Transaction.js'
 import MoveItemDown_Transaction from './transactions/MoveItemDown_Transaction.js'
 import DeleteItem_Transaction from './transactions/DeleteItem_Transaction.js'
+import EditListName_Transaction from './transactions/EditListName_Transaction.js'
 
 /**
 * ToDoModel
@@ -322,6 +323,18 @@ export default class ToDoModel {
 		}
 	}
 
+	// Update list name
+	updateListName(list, newName) {
+		list.name = newName;
+		this.view.refreshLists(this.toDoLists);
+	}
+
+	editListNameTransaction(oldText, newText, list) {
+		let transaction = new EditListName_Transaction(this, oldText, newText, list);
+		this.tps.addTransaction(transaction);
+		this.handleUndoRedoControls();
+	}
+
 	editTaskTextTransaction(oldText, newText, item) {
 		let transaction = new EditTextTask_Transaction(this, oldText, newText, item);
 		this.tps.addTransaction(transaction);
@@ -371,7 +384,7 @@ export default class ToDoModel {
 	}
 
 	/**
-	 * Use a new jsTPS fora newly loaded list
+	 * Use a new jsTPS for a newly loaded list
 	 */
 	clearTransactionStack() {
 		this.tps.clearAllTransactions();

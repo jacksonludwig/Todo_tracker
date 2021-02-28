@@ -118,12 +118,20 @@ option:first-child {
 	padding: 10px;
 }
 
+input {
+	background: none;
+	border: none;
+	color: var(--font-primary);
+}
+
 .first-todo-list {
 	background-color: rgb(64, 69, 78);
+	background: none;
+	border: none;
+	color: var(--font-primary);
 }
 
 .first-todo-list:hover {
-	cursor: text;
 	background-color: grey;
 }
 
